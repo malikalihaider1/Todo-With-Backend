@@ -1,13 +1,13 @@
 import express from "express";
 import cors from "cors";
 
-
+import './database.js'
 const app = express();
 const port = process.env.PORT || 5002;
 const todos = [];
 
 app.use(express.json()); // to convert body in to json
-app.use(cors( {origin:['http://localhost:5173','https://frontend.surgey.sh']}));
+app.use(cors( {origin:['http://localhost:5173','https://frontend.surge.sh']}));
 app.get("/api/v1/todos", (request, response) => {
  
   const message = !todos.length ? "todos empty" : "ye lo sab todos"
@@ -75,7 +75,7 @@ app.delete("/api/v1/todo/:id", (request, response) => {
 });
 
 app.use((request, response) => {
-  response.status(404).send("no route found");
+  response.status(404).send({message:"no route found"});
 });
 
 app.listen(port, () => {
